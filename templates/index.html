@@ -1,79 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cyber Threat URL Scanner</title>
-
     <link rel="stylesheet"
           href="{{ url_for('static', filename='style.css') }}">
 </head>
-
 <body>
-
     <div class="container">
-
-        <h1>🛡️ Cyber Threat URL Scanner</h1>
-
+        <h1> Cyber Threat URL Scanner</h1>
         <p class="subtitle">
             Analyze URLs for potential phishing and cyber threats.
         </p>
-
         <form method="POST">
-
             <input
                 type="text"
                 name="url"
                 placeholder="Enter URL here..."
                 required>
-
             <button type="submit">
                 Scan URL
             </button>
-
         </form>
-
         {% if score is not none %}
-
         <div class="result">
-
             <h2>Risk Score: {{ score }}/100</h2>
-
             <div class="fill"
      style="width: {{ score|default(0) }}%; background-color: {{ risk_color|default('#22c55e') }};">
 </div>
             <h3 class="verdict">
                 {{ verdict }}
             </h3>
-
             <h4>Total Scans: {{ scan_count }}</h4>
-
             <div class="reasons-box">
-
                 <h3>Why might this website be suspicious?</h3>
-
                 {% if reasons %}
-
                 <ul>
                     {% for reason in reasons %}
                     <li>⚠️ {{ reason }}</li>
                     {% endfor %}
                 </ul>
-
                 {% else %}
-
                 <p>No major threat indicators were detected.</p>
-
                 {% endif %}
-
             </div>
-
         </div>
-
         {% endif %}
-
     </div>
-
 </body>
 </html>
