@@ -4,7 +4,7 @@ A Flask-based cybersecurity tool that analyzes URLs and identifies potential phi
 
 ## Features
 
-* Risk scoring (0–100)
+* Risk score approximation (0–100)
 * HTTPS detection
 * Suspicious keyword detection
 * Long URL detection
