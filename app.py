@@ -85,19 +85,17 @@ def analyze_url(url):
             )
 
     score = min(score, 100)
-
     # Verdict
     if score >= 80:
-        verdict = "☠️ EXTREMELY DANGEROUS"
+        verdict = " EXTREMELY DANGEROUS"
     elif score >= 60:
-        verdict = "🔴 Dangerous"
+        verdict = "Dangerous"
     elif score >= 40:
-        verdict = "🟡 Suspicious"
+        verdict = " Suspicious"
     elif score >= 20:
-        verdict = "🟨 Slightly Suspicious"
+        verdict = " Slightly Suspicious"
     else:
-        verdict = "🟢 Safe"
-
+        verdict = " Safe"
     # Risk Bar Color
     if score <= 20:
         risk_color = "#22c55e"      # Green
@@ -109,28 +107,18 @@ def analyze_url(url):
         risk_color = "#f97316"      # Orange
     else:
         risk_color = "#ef4444"      # Red
-
     return score, verdict, reasons, risk_color
-
-
 @app.route("/", methods=["GET", "POST"])
 def home():
-
     global scan_count
-
     score = None
     verdict = None
     reasons = []
     risk_color = "#22c55e"
-
     if request.method == "POST":
-
         scan_count += 1
-
         url = request.form["url"]
-
         score, verdict, reasons, risk_color = analyze_url(url)
-
     return render_template(
         "index.html",
         score=score,
@@ -139,7 +127,5 @@ def home():
         risk_color=risk_color,
         scan_count=scan_count
     )
-
-
 if __name__ == "__main__":
     app.run(debug=True)
