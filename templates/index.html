@@ -17,7 +17,7 @@
             <input
                 type="text"
                 name="url"
-                placeholder="Enter URL here..."
+                placeholder="Enter URL here"
                 required>
             <button type="submit">
                 Scan URL
@@ -38,7 +38,7 @@
                 {% if reasons %}
                 <ul>
                     {% for reason in reasons %}
-                    <li>⚠️ {{ reason }}</li>
+                    <li>{{ reason }}</li>
                     {% endfor %}
                 </ul>
                 {% else %}
