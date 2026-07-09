@@ -19,7 +19,7 @@ def analyze_url(url):
         "wallet"
     ]
     parsed = urlparse(url)
-    # HTTPS Check
+    # HTTPS Checking
     if parsed.scheme != "https":
         score += 20
         reasons.append(
@@ -57,13 +57,12 @@ def analyze_url(url):
         reasons.append(
             "The domain contains an unusually high number of hyphens."
         )
-    # Numbers in Domain
+    # Numbers in Domains
     if re.search(r"\d", parsed.netloc):
         score += 10
         reasons.append(
             "The domain contains numbers which can sometimes indicate impersonation."
         )
-
     # Typosquatting Detection
     fake_brands = {
         "g00gle": "Google",
@@ -74,16 +73,13 @@ def analyze_url(url):
         "instagrarn": "Instagram",
         "githuh": "GitHub"
     }
-
     domain = parsed.netloc.lower()
-
     for fake, real in fake_brands.items():
         if fake in domain:
             score += 30
             reasons.append(
                 f"The domain may be impersonating {real}."
             )
-
     score = min(score, 100)
     # Verdict
     if score >= 80:
